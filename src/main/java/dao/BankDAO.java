@@ -59,9 +59,8 @@ public class BankDAO {
 
     public Account selectByNum(int num) {
         Connection conn = DBConnection.getInstance();
-        String sql = null;
         try {
-            sql = "select * from account_tb where number = ?";
+            String sql = "select * from account_tb where number = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, num);
 
