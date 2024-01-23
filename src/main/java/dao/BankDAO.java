@@ -11,31 +11,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BankDAO {
-    public int customQuery(String sql) {
-        Connection conn = DBConnection.getInstance();
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            int num = pstmt.executeUpdate();
-            ResultSet rs = pstmt.executeQuery(); // flush후 받은 결과를 rs에 담는다.
-
-            List<Account> accountList = new ArrayList<>();
-            while (rs.next()) {
-                Account account = new Account(
-                        rs.getInt("number"),
-                        rs.getString("password"),
-                        rs.getInt("balance"),
-                        rs.getTimestamp("created_at")
-                );
-                accountList.add(account);
-            }
-            return num;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
     public int insert(String password, int balance) {
         Connection conn = DBConnection.getInstance();
         try {
